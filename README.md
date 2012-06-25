@@ -16,7 +16,7 @@ A few things that are useful in this application:
  * see app.js
 
 
-## System Requirement
+## Installation Guide
 
 1. [mongoDB](http://www.mongodb.org/downloads) needs be installed and running , follow the README instruction if you have trouble.
 
