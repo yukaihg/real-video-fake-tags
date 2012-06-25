@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+
+	//if we click anyelse where, the tooltip will be dismiss
 	$("body").click(function (evt) {
 		var target = evt.target;
 		console.log($(target).parent().attr("class"));
@@ -9,11 +11,14 @@ $(document).ready(function () {
 	});
 
 
-
+	//create a new player using the HTML5 video's id attributes
 	var myPlayer = _V_("player");
+
+	//initialize duration to 0
 	var duration = 0;
 
 	myPlayer.ready(function () {
+		//when the JS player is in ready state, start do things
 
 		var myPlayer = this;
 
@@ -28,22 +33,36 @@ $(document).ready(function () {
 
 	myPlayer.addEvent('durationchange', function () {
 
+		//fires when time duration changes, means that we loaded the a new video file succsufully
+
 		var comments;
+
 		jQuery.get("/api/comments/", function (data, textStatus, jqXHR) {
+			//call the api to get all the comments
+
 			console.log("Get resposne:");
 			console.dir(data);
 			if(data){
+				// if we have some results returned, render them on page
 
 				duration = myPlayer.duration();
                 //console.log(data.length);
 				$.each(data,function(index,element){
+					//caculate the position of the tags using percentage
+
 					var position = (element.start / myPlayer.duration()) * 980;
+
+					//insert the tags on timeline
 					insertMarker(position,element);
-					appendComment(element)
+
+					//prepend comment on comment area
+					prependComment(element)
 				})
 
 
 			}
+
+			//TODO: error handling
 			console.log(textStatus);
 			console.dir(jqXHR);
 		});
@@ -55,12 +74,16 @@ $(document).ready(function () {
 
 
 	$(".marker").live('mouseover', function () {
+		//when mouse move over tags, show its related tooltips, using live here since new tags can be generated any time
+
 		$('.tooltip').hide();
 		$(this).next().show();
 	})
 
 
 	$('.start_time').live('click', function () {
+		//when user clicks on "00:30", move the movie to 00:30
+
 		var time = $(this).attr('data-time');
 		myPlayer.currentTime(time);
 		myPlayer.play();
@@ -69,6 +92,7 @@ $(document).ready(function () {
 	})
 
 	$('#btn_show_comment').bind('click', function () {
+		//show comment form when the button is clicked, using data-time to record the value in seconds unit
 		$('#make_comment_time').val(convert(myPlayer.currentTime()));
 		$('#make_comment_time').attr('data-time',myPlayer.currentTime());
 		$('#make_comment').slideDown();
@@ -76,6 +100,7 @@ $(document).ready(function () {
 	})
 
 	$('#btn_make_comment_time').bind('click', function () {
+		//get current time value into the start time input box, using data-time to record the value in seconds unit
 
 		$('#make_comment_time').val(convert(myPlayer.currentTime()));
 		$('#make_comment_time').attr('data-time',myPlayer.currentTime());
@@ -85,6 +110,7 @@ $(document).ready(function () {
 	})
 
 	$('form').bind('submit',function(){
+		//on form submit, gather all the data of the form and do AJAX request
 		var data = {}
 		data.start = $('#make_comment_time').attr('data-time');
 		data.name = "Guest";
@@ -92,11 +118,14 @@ $(document).ready(function () {
 		data.comment =  $('#make_comment_context').val();
 
 		jQuery.post("/api/comments", data, function (data, textStatus, jqXHR) {
+			//call the post api to create new comment
 			console.log("Post resposne:"); console.dir(data); console.log(textStatus); console.dir(jqXHR);
 			if(data){
+				//if we created new comment successfully, it will return what we just created, render them on page
+
 				var position = (data.start / myPlayer.duration()) * 980;
 				insertMarker(position,data);
-				appendComment(data);
+				prependComment(data);
 				$('#make_comment').slideDown();
 				myPlayer.play();
 			}
@@ -109,6 +138,7 @@ $(document).ready(function () {
 	})
 
 	$('#btn_show_share').bind('click',function(){
+		//TODO: share functionality
 		alert('under construction... basically what\'s on the white board');
 		return false;
 
@@ -119,6 +149,8 @@ $(document).ready(function () {
 });
 
 function convert(totalSec) {
+	//convert seconds into MM:SS format
+
 	totalSec = parseInt(totalSec, 10);
 
 	minutes = parseInt(totalSec / 60, 10) % 60;
@@ -136,7 +168,7 @@ function insertMarker(position,data){
 	$('#timeline').append(marker + tooltip);
 }
 
-function appendComment(data){
+function prependComment(data){
 	var comment = '<article class="clearfix">'
 			+ '<a  href="#">'
 			+ '<img src="' + data.avatar + '"  class="portrait">'
