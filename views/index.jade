@@ -1,0 +1,23 @@
+div#wrap
+	video#player.video-js.vjs-default-skin(controls="controls",preload="auto",width="980",height="408",data-setup="{}")
+		source(src="/media/1.mp4",type="video/mp4")
+	div#timeline
+	div#info
+		div#video_meta
+			h1 The Dark Knight Rises
+			div#byline by
+				a#author(rel="author",href="#") Mark Ni
+				time 1 year ago
+		div.description_wrapper
+			div.description
+				p.first Eight years after Batman took the fall for Two Face's crimes, a new terrorist leader,Bane, overwhelms Gotham's finest, and the Dark Knight resurfaces to protect a city that has branded him an enemy.
+	div#control
+		button#btn_show_comment  Tag a Moment
+		button#btn_show_share  Share a Slice
+	div#make_comment
+		form
+			input#make_comment_time(type="text",disabled="disabled",placeholder="00:00",data-time="0")
+			button#btn_make_comment_time(title="Get Current Time") ↡
+			input#make_comment_context(type="text",placeholder="Type your comment here and click submit")
+			button#btn_make_comment_submit(type="submit") Submit
+	div#comments
