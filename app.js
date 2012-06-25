@@ -6,7 +6,8 @@ var express = require('express'),
 	routes = require('./routes'),
 	path = require("path"),
 	//mongoose = require('mongoose'),
-	models = require('./models');
+	models = require('./models'),
+	mailer = require('mailer');
 
 var app = module.exports = express.createServer();
 
@@ -128,6 +129,29 @@ app.delete('/api/comments/:id', function (req, res){
 		});
 	});
 });
+
+//sending a email through mailer, TODO: needs a local SMTP server running to work
+app.post('/mailer', function (req, res) {
+	var mail = {};
+	console.log("POST: ");
+	console.log(req.body);
+	mail.host = req.body.host || 'localhost';
+	mail.port = req.body.port || '25';
+	mail.to = req.body.to;
+	mail.from = 'tags@sfu.ca';
+	mail.subject = req.body.subject || "No subject";
+	mail.body = req.body.body || ""
+
+	mailer.send(mail,function(err, result){
+		if (err){
+
+			console.log(err);
+		}
+	});
+
+	return res.send(mail);
+});
+
 
 
 
