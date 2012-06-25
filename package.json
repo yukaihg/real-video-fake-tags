@@ -1,6 +1,6 @@
 {
-	"name":"application-name",
-	"version":"0.0.1",
+	"name":"real-video-fake-tags",
+	"version":"0.0.4",
 	"private":true,
 	"dependencies":{
 		"express":"2.5.10",
