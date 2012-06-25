@@ -6,7 +6,7 @@ A few things that are useful in this application:
  * see public/javascripts/script.js 
 * How to create a **RESTful** json api using Node.js and Express
  * see app.js
-* How to use a **object modeling tool** (Mongoose in this case) to bind data models into database schema (MongoDB in this case)
+* How to use a **object modeling tool** ([Mongoose](http://mongoosejs.com/) in this case) to bind data models into database schema (MongoDB in this case)
  * see models/index.js
 * How to preform basic **CRUD**(create, read, update, delete) actions on data models without writing queries 
  * see app.js
