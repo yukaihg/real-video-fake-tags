@@ -1,5 +1,3 @@
-real-video-fake-tags
-====================
 ## Highlights
 
 A few things that are useful in this application:
