@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
 
+
 	//if we click anyelse where, the tooltip will be dismiss
 	$("body").click(function (evt) {
 		var target = evt.target;
@@ -34,6 +35,12 @@ $(document).ready(function () {
 	myPlayer.addEvent('durationchange', function () {
 
 		//fires when time duration changes, means that we loaded the a new video file succsufully
+
+		if ($('#player_html5_api').attr('pluginspage') === 'http://go.divx.com/plugin/download/'){
+			//some user has divx web player install and hijack our player, pop a message says it's wrong
+			alert('Fuck DivX Plus Web Player, Uninstall it now!!!');
+
+		};
 
 		var comments;
 
@@ -185,3 +192,6 @@ function prependComment(data){
 
 	$('#comments').prepend(comment);
 }
+
+
+
