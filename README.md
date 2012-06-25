@@ -12,7 +12,7 @@ A few things that are useful in this application:
 
 ## System Requirement
 
-1. mongoDB needs be installed [http://www.mongodb.org/downloads](http://www.mongodb.org/downloads), follow the README instruction if you have trouble.
+1. mongoDB needs be installed and running [http://www.mongodb.org/downloads](http://www.mongodb.org/downloads), follow the README instruction if you have trouble.
 
 2. ```npm install``` as always
 
