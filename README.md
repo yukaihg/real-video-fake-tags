@@ -4,6 +4,7 @@ real-video-fake-tags
 
 A few things that are useful in this application:
 
+* How to use [videojs](http://videojs.com/) HTML5 player and its api to tag videos 
 * How to create a RESTful json api using Node.js and Express
 * How to use a model wrapper (Mongoose in this case) to bind data models into database schema (MongoDB in this case)
 * How to preform basic CRUD(create, read, update, delete) actions on data models without writing queries 
