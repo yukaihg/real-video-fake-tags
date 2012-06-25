@@ -50,6 +50,7 @@ app.get('/api', function (req, res) {
 });
 
 
+//list all comments in database
 app.get('/api/comments', function (req, res) {
 	return CommentModel.find(function (err, comments) {
 		if (!err) {
@@ -60,6 +61,7 @@ app.get('/api/comments', function (req, res) {
 	});
 });
 
+//post a new comment
 app.post('/api/comments', function (req, res) {
 	var comment;
 	console.log("POST: ");
@@ -83,6 +85,7 @@ app.post('/api/comments', function (req, res) {
 });
 
 
+//get a comment by id
 app.get('/api/comments/:id', function (req, res) {
 	return CommentModel.findById(req.params.id, function (err, comment) {
 		if (!err) {
@@ -93,6 +96,7 @@ app.get('/api/comments/:id', function (req, res) {
 	});
 });
 
+//update a comment by id
 app.put('/api/comments/:id', function (req, res) {
 	return CommentModel.findById(req.params.id, function (err, comment) {
 		comment.name = req.body.name,
