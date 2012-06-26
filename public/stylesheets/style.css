@@ -23,6 +23,22 @@ h1 {
 	color: #456;
 }
 
+body {
+	background-color: #EDEEEF;
+}
+
+div#wrap {
+	margin: 0 auto;
+	width: 980px;
+	margin-top: 50px;
+}
+
+.clearfix {
+	clear: both
+}
+
+/*video info box*/
+
 div#info {
 	padding: 30px 15px;
 	border: 1px solid #E9EBEF;
@@ -34,35 +50,22 @@ div#info {
 
 }
 
-#info .description_wrapper {
+div#info .description_wrapper {
 	margin-top: 20px;
 }
 
-#info .description {
+div#info .description {
 	font-size: 16px;
 	line-height: 21px;
 }
 
-.video-js {
-	background: transparent;
+div#info a#author {
+	margin: 0 10px;
 }
 
-body {
-	background-color: #EDEEEF;
-}
+/*timeline style*/
 
-#wrap {
-	margin: 0 auto;
-	width: 980px;
-	margin-top: 50px;
-}
-
-.vjs-loading-spinner {
-	display: none;
-	visibility: hidden;
-}
-
-#timeline {
+div#timeline {
 	border: 1px solid #E9EBEF;
 	border-top: 0;
 	border-bottom: 1px solid #E9EBEF;
@@ -73,19 +76,17 @@ body {
 	margin-top: 10px;
 }
 
-.marker {
+div#timeline div.marker {
 	border-right: 1px solid #E9EBEF;
 	position: absolute;
 	top: 0;
 	cursor: pointer;
-	background-color:#F4F5F7;
+	background-color: #F4F5F7;
 	height: 20px;
 	width: 10px;
 }
 
-
-
-.tooltip {
+div#timeline div.tooltip {
 	position: absolute;
 	bottom: 40px;
 	/*display: hidden;*/
@@ -99,14 +100,14 @@ body {
 
 }
 
-
-
 time.start_time {
 
 	cursor: pointer;
 	color: #666666;
 
 }
+
+/*control area style*/
 
 #control {
 	text-align: center
@@ -133,34 +134,58 @@ button#btn_show_share:hover, button#btn_show_comment:hover {
 	background-color: white;
 
 }
-#comments{margin-top: 20px;}
-.portrait{border: 10px white solid; box-shadow: 0px 1px 1px 0px
-#CCC; margin-right: 20px; width: 40px;}
-.clearfix{clear:both}
-#comments article a {float: left;}
 
-#comments article{padding: 20px; min-height: 50px;}
+/*comments area style*/
 
-.comment {float: left;}
+div#comments {
+	margin-top: 20px;
+}
 
-.text{clear:left}
+div#comments img.portrait {
+	border: 10px white solid;
+	box-shadow: 0px 1px 1px 0px #CCC;
+	margin-right: 20px;
+	width: 40px;
+}
 
-#comments .name{margin-right: 10px;}
+div#comments div.comment {
+	float: left;
+}
 
-#comments article{
+div#comments div.text {
+	clear: left
+}
+
+div#comments a.name {
+	margin-right: 10px;
+}
+
+div#comments article {
+	padding: 20px;
+
 	min-height: 60px;
-	background-color:  #F4F5F7;
+	background-color: #F4F5F7;
 	border-bottom: 1px solid #E9EBEF;
 }
-#comments article:nth-child(odd) {
-	background-color:  #eeeff0;
+
+div#comments article:nth-child(odd) {
+	background-color: #eeeff0;
 }
 
-#make_comment {text-align: center; display: none;}
+div#comments article a {
+	float: left;
+}
 
-#btn_make_comment_time, #btn_make_comment_submit {cursor: pointer;
+div#make_comment {
+	text-align: center;
+	display: none;
+}
+
+/*comment form style*/
+
+button#btn_make_comment_time, button#btn_make_comment_submit {
+	cursor: pointer;
 	color: #456;
-
 
 	background-color: #F4F5F7;
 
@@ -171,12 +196,25 @@ button#btn_show_share:hover, button#btn_show_comment:hover {
 	border: 1px solid #E9EBEF;
 	border-top: 0;
 	border-bottom: 1px solid #E9EBEF;
-padding: 10px;}
+	padding: 10px;
+}
 
-#make_comment_time{width: 60px;padding: 10px;}
-#make_comment_context{width: 400px;padding: 10px;}
+input#make_comment_time {
+	width: 60px;
+	padding: 10px;
+}
 
-.vjs-default-skin .vjs-big-play-button,.vjs-default-skin div.vjs-big-play-button span  {outline: 0}
+input#make_comment_context {
+	width: 400px;
+	padding: 10px;
+}
 
-a#author{margin: 0 10px;}
+/*videojs player style overwrite*/
 
+.vjs-default-skin .vjs-big-play-button, .vjs-default-skin div.vjs-big-play-button span {
+	outline: 0
+}
+
+.video-js {
+	background: transparent;
+}
