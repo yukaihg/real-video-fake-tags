@@ -29,6 +29,6 @@ A few things that are useful in this application:
 
 ## Further Reading
 
-if you like object modeling tool for MYSQL, see [Sequelize](http://www.sequelizejs.com/)
+1. if you like object modeling tool for MYSQL, see [Sequelize](http://www.sequelizejs.com/)
 
-[Develop a RESTful API Using Node.js With Express and Mongoose](http://pixelhandler.com/blog/2012/02/09/develop-a-restful-api-using-node-js-with-express-and-mongoose/)
+2. a mode detailed tutorial: [Develop a RESTful API Using Node.js With Express and Mongoose](http://pixelhandler.com/blog/2012/02/09/develop-a-restful-api-using-node-js-with-express-and-mongoose/)
