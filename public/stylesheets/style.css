@@ -25,6 +25,7 @@ h1 {
 
 body {
 	background-color: #EDEEEF;
+
 }
 
 div#wrap {
@@ -110,7 +111,9 @@ time.start_time {
 /*control area style*/
 
 #control {
-	text-align: center
+	text-align: center;
+	border-right: 1px solid #E9EBEF;
+	border-left: 1px solid #E9EBEF;
 }
 
 button#btn_show_share, button#btn_show_comment {
@@ -139,6 +142,8 @@ button#btn_show_share:hover, button#btn_show_comment:hover {
 
 div#comments {
 	margin-top: 20px;
+	border-top: 1px #aaaaaa dashed;
+	padding-top: 30px;
 }
 
 div#comments img.portrait {
@@ -179,6 +184,9 @@ div#comments article a {
 div#make_comment {
 	text-align: center;
 	display: none;
+	border-right: 1px solid #E9EBEF;
+	border-left: 1px solid #E9EBEF;
+
 }
 
 /*comment form style*/
