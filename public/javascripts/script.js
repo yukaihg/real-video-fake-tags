@@ -1,17 +1,6 @@
 $(document).ready(function () {
 
 
-
-	//if we click anyelse where, the tooltip will be dismiss
-	$("body").click(function (evt) {
-		var target = evt.target;
-		console.log($(target).parent().attr("class"));
-		if ($(target).attr("class") !== 'tooltip' && $(target).parent().attr("class") !== 'tooltip' && $(target).parent().parent().attr("class") !== 'tooltip') {
-			$(".tooltip").hide();
-		}
-	});
-
-
 	//create a new player using the HTML5 video's id attributes
 	var myPlayer = _V_("player");
 
@@ -23,61 +12,58 @@ $(document).ready(function () {
 
 		var myPlayer = this;
 
-		// EXAMPLE: Start playing the video.
-		//myPlayer.play();
+		myPlayer.addEvent('durationchange', function () {
 
-		if (!duration) {
+			//fires when time duration changes, means that we loaded the a new video file succsufully
 
-		}
+			if ($('#player_html5_api').attr('pluginspage') === 'http://go.divx.com/plugin/download/'){
+				//some user has divx web player install and hijack our player, pop a message says it's wrong
+				alert('Fuck DivX Plus Web Player, Uninstall it now!!!');
 
-	});
+			};
 
-	myPlayer.addEvent('durationchange', function () {
+			var comments;
 
-		//fires when time duration changes, means that we loaded the a new video file succsufully
+			jQuery.get("/api/comments/", function (data, textStatus, jqXHR) {
+				//call the api to get all the comments
 
-		if ($('#player_html5_api').attr('pluginspage') === 'http://go.divx.com/plugin/download/'){
-			//some user has divx web player install and hijack our player, pop a message says it's wrong
-			alert('Fuck DivX Plus Web Player, Uninstall it now!!!');
+				console.log("Get resposne:");
+				console.dir(data);
+				if(data){
+					// if we have some results returned, render them on page
 
-		};
+					duration = myPlayer.duration();
+					//console.log(data.length);
+					$.each(data,function(index,element){
+						//caculate the position of the tags using percentage
 
-		var comments;
+						var position = (element.start / myPlayer.duration()) * 980;
 
-		jQuery.get("/api/comments/", function (data, textStatus, jqXHR) {
-			//call the api to get all the comments
+						//insert the tags on timeline
+						insertMarker(position,element);
 
-			console.log("Get resposne:");
-			console.dir(data);
-			if(data){
-				// if we have some results returned, render them on page
-
-				duration = myPlayer.duration();
-                //console.log(data.length);
-				$.each(data,function(index,element){
-					//caculate the position of the tags using percentage
-
-					var position = (element.start / myPlayer.duration()) * 980;
-
-					//insert the tags on timeline
-					insertMarker(position,element);
-
-					//prepend comment on comment area
-					prependComment(element)
-				})
+						//prepend comment on comment area
+						prependComment(element)
+					})
 
 
-			}
+				}
 
-			//TODO: error handling
-			console.log(textStatus);
-			console.dir(jqXHR);
+				//TODO: error handling
+				console.log(textStatus);
+				console.dir(jqXHR);
+			});
+
+
+
+
 		});
 
 
 
-
 	});
+
+
 
 
 	$(".marker").live('mouseover', function () {
@@ -116,6 +102,23 @@ $(document).ready(function () {
 
 	})
 
+	$('#btn_show_share').bind('click',function(){
+		//TODO: share functionality
+		alert('under construction... basically what\'s on the white board');
+		return false;
+
+	})
+
+
+	//if we click anyelse where, the tooltip will be dismiss
+	$("body").click(function (evt) {
+		var target = evt.target;
+		console.log($(target).parent().attr("class"));
+		if ($(target).attr("class") !== 'tooltip' && $(target).parent().attr("class") !== 'tooltip' && $(target).parent().parent().attr("class") !== 'tooltip') {
+			$(".tooltip").hide();
+		}
+	});
+
 	$('form').bind('submit',function(){
 		//on form submit, gather all the data of the form and do AJAX request
 		var data = {}
@@ -144,12 +147,6 @@ $(document).ready(function () {
 
 	})
 
-	$('#btn_show_share').bind('click',function(){
-		//TODO: share functionality
-		alert('under construction... basically what\'s on the white board');
-		return false;
-
-	})
 
 
 

@@ -116,7 +116,7 @@ app.put('/api/comments/:id', function (req, res) {
 	});
 });
 
-
+//delete a comment by id
 app.delete('/api/comments/:id', function (req, res){
 	return CommentModel.findById(req.params.id, function (err, comment) {
 		return comment.remove(function (err) {
