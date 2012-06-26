@@ -199,10 +199,20 @@ button#btn_make_comment_time, button#btn_make_comment_submit {
 	padding: 10px;
 }
 
-input#make_comment_time {
-	width: 60px;
-	padding: 10px;
+button#btn_make_comment_time:hover, button#btn_make_comment_submit:hover  {
+	background-color: white;
 }
+
+input#make_comment_time {
+	width: 40px;
+	padding: 10px;
+	border: 1px solid #E9EBEF;
+	border-top: 0;
+	border-bottom: 1px solid #E9EBEF;
+}
+
+
+
 
 input#make_comment_context {
 	width: 400px;
